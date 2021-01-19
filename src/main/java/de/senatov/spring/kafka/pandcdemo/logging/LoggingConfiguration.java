@@ -1,4 +1,4 @@
-package de.senatov.spring.kafka.logging;
+package de.senatov.spring.kafka.pandcdemo.logging;
 
 
 
