@@ -2,31 +2,37 @@ package de.senatov.spring.kafka.pandcdemo;
 
 
 
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 
 
+@Slf4j
 @RestController
-@RequestMapping("/publish")
+@RequestMapping("/api/kafka")
 public class KafkaController {
 
-    private final KafkaProducer producer = null;
+    private KafkaTemplate<String, KafkaModel> kafkaTemplate;
 
 
 
-    public KafkaController(KafkaProducer producer) {
+    @Autowired
+    public KafkaController(KafkaTemplate<String, KafkaModel> kafkaTemplate) {
 
-        producer = producer;
+        this.kafkaTemplate = kafkaTemplate;
     }
 
 
-    @PostMapping("/publish")
-    private void writeMessageToTopic(@RequestParam("message") String message) {
+    @PostMapping
+    private void post(@RequestBody KafkaModel kafkaModel) {
 
-        producer.writeMessage(message);
+        kafkaTemplate.send("myTopic", kafkaModel);
+
     }
 
 }
