@@ -3,15 +3,13 @@ package de.senatov.spring.kafka.pandcdemo;
 
 
 import lombok.Data;
-import org.springframework.stereotype.Component;
-
-import java.io.Serializable;
+import org.springframework.context.annotation.Configuration;
 
 
 
 @Data
-@Component
-public class KafkaModel implements Serializable {
+@Configuration
+public class KafkaModel {
 
     private static final long serialVersionUID = 1671862795996898048L;
     private String field1;
