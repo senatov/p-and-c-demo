@@ -23,6 +23,7 @@ public class KafkaConfig {
     public ProducerFactory<String, KafkaModel> producerFactory() {
 
         Map<String, Object> cfg = new HashMap<>();
+        // forward to aws cloud server with kafka installation
         cfg.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "127.0.0.1:9092");
         cfg.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
         cfg.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class);
